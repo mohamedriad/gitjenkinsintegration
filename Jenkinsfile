@@ -1,4 +1,5 @@
 properties([pipelineTriggers([githubPush()])])
+properties([parameters([choice(choices: "master\nfeature-1\nfeature-2", name: 'branch')])])
 node { git url: 'https://github.com/mohamedriad/gitjenkinsintegration.git', branch:'master' }
 pipeline{
   agent any
@@ -6,7 +7,7 @@ pipeline{
     stage('SCM'){
       steps{
         node('slave_2'){
-          git 'https://github.com/mohamedriad/gitjenkinsintegration'
+          git url: 'https://github.com/mohamedriad/gitjenkinsintegration', branch: "${params.branch}"
         }
 
       }
@@ -21,6 +22,18 @@ pipeline{
           
       }
     }
+    stage('Slack')
+    {
+      steps{
+        slackSend channel: '#PipeLine', color: 'green', message: 'asdasd', tokenCredentialId: 'slack'
+      }
+    
+    }
+    
+    
+    
+    
+    
   }
 
 
