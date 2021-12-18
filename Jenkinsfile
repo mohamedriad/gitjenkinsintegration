@@ -13,6 +13,15 @@ pipeline{
       }
 
     }
+    stage('RUN')
+    {
+      steps{
+         node('slave_2'){
+          sh 'python test.py'
+        }
+          
+      }
+    }
   }
 
 
