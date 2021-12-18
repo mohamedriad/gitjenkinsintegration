@@ -7,7 +7,6 @@ pipeline{
       steps{
         node('slave_2'){
           git 'https://github.com/mohamedriad/gitjenkinsintegration'
-          sh 'python test.py'
         }
 
       }
