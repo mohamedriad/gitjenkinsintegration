@@ -16,7 +16,7 @@ pipeline{
     {
       steps{
          node('slave_2'){
-          sh 'python test.py'
+          bat 'python test.py'
         }
           
       }
